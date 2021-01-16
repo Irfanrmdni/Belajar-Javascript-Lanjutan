@@ -1,0 +1,24 @@
+[
+    {
+        "nama": "irpan ramdani",
+        "nrp": "2113191069",
+        "email": "irfanrmdni209@gmail.com",
+        "jurusan": "teknik informatika",
+        "idDosenWali": 1
+    },
+    {
+        "nama": "Dori harsa",
+        "nrp": "2113191765",
+        "email": "doriharsa@gmail.com",
+        "jurusan": "teknik informatika",
+        "idDosenWali": 2
+    },
+    {
+        "nama": "Joni halis",
+        "nrp": "2113191233",
+        "email": "jonihalis@gmail.com",
+        "jurusan": "teknik informatika",
+        "idDosenWali": 3
+    }
+
+]

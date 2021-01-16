@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANJUTAN Asynchronous</title>
+</head>
+
+<body>
+    <!--
+        Asynchronous
+
+        Tujuan nya adalah agar tidak bingung ketika dihadapkan dengan teknik-teknik
+        Asynchronous programming pada javascript
+
+        Seperti :
+        1. Callback
+        2. Promise
+        3. Ajak
+        4. Async & Await
+
+        Definisi javascript kompleks
+        1. threaded adalah urutan eksekusi code yang dapat dilakukan bebas/independent satu sama lain
+
+        2. Javascript hanya punya single threaded / 1 threaded yang artinya ketika punya 1 task dan ketika
+        task 1 nya selesai maka dia baru bisa menyelesaikan ke task yang ke 2 setelah task 2 selesai maka
+        lanjut ke task berikutnya
+
+        3. atau Javascript punya multithreaded tetapi hanya bisa dijalankan 1 per 1
+
+        4. Blocking adalah ketika task 1 loading untuk menyelesaikan perintah maka ini tidak bisa lanjut ke task 2
+        harus nunggu task 1 selesai
+
+        5. Non-Blocking adalah sebaliknya ketika task 1 belum menyelesaikan perintah nya maka bisa lanjut ke task berikutnya
+
+        6. Asynchronous single-threaded ketika mengerjakan di task 1 belum selesai maka bisa pindah ke task 2 
+        dan kalau task 2 belum selesai maka bisa pindah ke task 1 terus pindah-pindah sampai pekerjaan nya selesai
+
+        7. Asynchronous multi-threaded ketika punya banyak threaded maka bisa mengerjakkan nya secara bersamaan
+
+        8. Asynchronous single-threaded = Concurrency
+
+        9. Asynchronous multi-threaded = Parallelism
+
+        10. single-threaded vs multi-threaded itu ada hubungannya dengan lingkungan eksekusi task
+
+        11. Blocking dan Non-Blocking itu adalah teknik ngoding kita biasanya ada hubungan dengan input dan output
+
+        12. synchronous dan Asynchronous adalah teknik ngoding kita yang ada hubungan nya dengan HTTP request kita misal ketika mengguankan ajak
+
+        13. Concurrency vs Parallelism itu ada hubungannya dengan lingkungan eksekusi task
+
+        didalam javascript ada V8 Engine yang ditanam kedalam browser, terdapat 2 bagian
+        1. heap     -> memory allocation   (tempat penyimpanan variabel function hoisting)
+        2. stack    -> Function call dan Execution context (pemanggilan function dan eksekusi konteks) jadi ketika
+        function dan variabel disimpen nya di heap tapi ketika dijalankan itu dilakukan oleh stack
+    -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
