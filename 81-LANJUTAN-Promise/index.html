@@ -12,17 +12,22 @@
         Promise/janji adalah sebuah object yang merepresentasikan keberhasilan / kegagalan sebuah event yang asynchronous 
         di masa yang akan datang
 
+        biasanya promise digunakan ketika me-request ke sebuah API
+
         Promise ini (terpenuhi / tidak terpenuhi)
         Promise ini disebut states / keadaan yang dimana jika terpenuhi = fulfilled , jika tidak terpenuhi rejected , dan ada pending
 
         untuk menjalankan Promise ini ada 3 callback (resolve , reject , finally)
         1. callback (resolve)   => ini dibuat ketika janji nya terpenuhi
         2. callback (reject)    => ini dibuat ketika janji nya tidak terpenuhi
-        3. callback (finally)   => ini dibuat ketika waktu tunggu nya selesai
+        3. callback (finally)   => ini dibuat ketika waktu tunggu nya selesai. setelah waktu tunggu selesai dari then / catch
+        maka finally lah yang pertama yang akan dijalankan. setelah itu baru resolve dan reject
 
         untuk menjalankan Promise ini ada aksi yang dijalankan
         1. aksi (then)          => ini dibuat kalau promise nya terpenuhi
         2. aksi (catch)         => ini dibuat kalau promise nya tidak terpenuhi
+
+        promise.all ketika punya banyak promise mau dijalankan sekaligus
     -->
 
 

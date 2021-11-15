@@ -8,7 +8,6 @@
 // console.log(`text01
 // text02`);
 
-
 // contoh penggunaan html fragments
 
 // membuat object
@@ -33,13 +32,14 @@
 // </div>`;
 
 // console.log(elemen);
+// document.write(elemen);
 
 
 // contoh penggunaan embedded ekspression
 
 // membuat variabel
-// const nama = 'irpan ramdani';
-// let umur = 13;
+const nama = 'irpan ramdani';
+let umur = 21;
 
 // tanpa back tick
 // console.log('hallo nama saya ' + nama + ' umur saya ' + umur);
@@ -67,3 +67,48 @@
 // dengan back tick
 // console.log(`hasil penjumlahan a + b adalah :  ${a + b} bukan ${2 * a + b}`);
 
+// ====================================================================================================================
+
+// template literals
+// const myName = 'irfan ramdani'
+// const age = 21
+// console.log(`hello world, my name is ${myName} and age ${age} years`)
+
+// embedded expression
+// console.log(`${alert('hallo')}`);
+// const x = 311;
+// console.log(`${x % 2 == 0 ? 'genap' : 'ganjil'}`);
+
+// html fragments
+const mhs = {
+    nama: 'irfan ramdani',
+    umur: 21,
+    nim: '2113191069',
+    email: 'irfanrmdni209@gmail.com'
+}
+
+// const elemen = [`<div class="mahasiswa">
+// <h1 class="nama">${mhs.nama}</h1>
+// <h4 class="umur">${mhs.umur}</h4>
+// <h4 class="nim">${mhs.nim}</h4>
+// <h4 class="email">${mhs.email}</h4>
+// </div>`];
+
+const container = document.querySelector('.container');
+
+function Mhs(nama, umur, nim, email) {
+    const elemen = `<div class="mahasiswa">
+    <h1 class="nama">${nama}</h1>
+    <h4 class="umur">${umur}</h4>
+    <h4 class="nim">${nim}</h4>
+    <h4 class="email">${email}</h4>
+    </div>`;
+
+    return elemen;
+}
+
+let mahasiswa_1 = Mhs('irfan ramdani', 21, '2113191069', 'irfanrmdni209@gmail.com');
+let mahasiswa_2 = Mhs('zihan nur', 21, '2113191069', 'irfanrmdni209@gmail.com');
+let mahasiswa_3 = Mhs('suci rahma', 21, '2113191069', 'irfanrmdni209@gmail.com');
+
+container.innerHTML = mahasiswa_1 + mahasiswa_2 + mahasiswa_3;

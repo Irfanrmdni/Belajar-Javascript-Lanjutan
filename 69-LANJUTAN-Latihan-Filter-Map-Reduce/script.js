@@ -22,13 +22,13 @@
 
 // 4. ubah durasi menjadi integer, ubah menit jadi detik
 // const ubahDurasi = durasi.map(function (ubahWaktu) {
-//     // kita gak butuh 11:18 -> : nya maka kita pecah menjadi array [11 , 18]
+// kita gak butuh 11:18 -> : nya maka kita pecah menjadi array [11 , 18]
 //     const pecahWaktu = ubahWaktu.split(':');
-//     // setelah dipecah menjadi [11 , 18]
-//     // kita kalikan pecahWaktu indeks ke 0 dengan * 60 dan tambah dengan indeks ke 1
-//     // karena ini string maka ketika menjumlahkan string yang isi nya angka
-//     // maka tidak akan melakukan operasi matematika misal 166 + 10 = 16610
-//     // kita ubah dulu ke float / int 
+// setelah dipecah menjadi [11 , 18]
+// kita kalikan pecahWaktu indeks ke 0 dengan * 60 dan tambah dengan indeks ke 1
+// karena ini string maka ketika menjumlahkan string yang isi nya angka
+// maka tidak akan melakukan operasi matematika misal 166 + 10 = 16610
+// kita ubah dulu ke float / int 
 //     return (parseFloat(pecahWaktu[0] * 60)) + parseFloat((pecahWaktu[1]));
 
 // });
@@ -60,6 +60,10 @@
 // jumlahVideo.innerHTML = `${jsLanjut.length}`;
 
 
+
+
+
+/*
 // dengan cara arrow function
 // 1. ambil elemen semua video (cari elemen yang punya attribute data-duration)
 const videos = Array.from(document.querySelectorAll('[data-duration]'));
@@ -85,4 +89,51 @@ totalDurasiVideo.innerHTML = `${jam} jam ${menit} menit ${detik} detik`;
 // 8. menentukan jumlah video
 const jumlahVideo = videos.filter((video) => video.textContent.includes('JAVASCRIPT LANJUTAN')).length;
 const jmlVideo = document.querySelector('.jumlah-video');
-jmlVideo.innerHTML = `${jumlahVideo} video`;
+jmlVideo.innerHTML = `${jumlahVideo} video`; */
+
+
+
+// ===================================================================================================================================
+
+// ambil semua elemen video yang ada di dalam li
+// filter / ambil yang hanya video JAVASCRIPT LANJUTAN
+// ambil durasi masing-masing video nya ( bentuknya string )
+// ubah durasi nya menjadi ( integer )
+// ubah format menit jadi detik ( biar nanti mudah dijumlahkan )
+// jumlahkan semua detik nya
+// setelah diubah ke detik ubah format nya jadi jam menit detik
+// simpan di DOM
+
+let jumlahVideoEl = document.querySelector('.jumlah-video');
+let totalDurasiEl = document.querySelector('.total-durasi');
+let videos = Array.from(document.querySelectorAll('[data-duration]'));
+let jsLanjut = "JAVASCRIPT LANJUTAN";
+
+let videoJS = [];
+videos.filter(function (video) {
+    if (video.textContent.includes(jsLanjut)) {
+        videoJS.push(video);
+    }
+});
+
+let duration = videoJS.map(function (waktu) {
+    return waktu.dataset.duration;
+});
+
+let changeDuration = duration.map(function (change) {
+    let cracked = change.split(':');
+    return parseFloat(cracked[0] * 60) + parseFloat(cracked[1]);
+});
+
+let totalDuration = changeDuration.reduce(function (acc, current) {
+    return acc + current;
+})
+
+
+let jam = Math.floor(totalDuration / 3600);
+totalDuration = totalDuration - jam * 3600;
+let menit = Math.floor(totalDuration / 60);
+let detik = Math.floor(totalDuration - menit * 60);
+
+jumlahVideoEl.innerHTML = videoJS.length;
+totalDurasiEl.innerHTML = `${jam} jam | ${menit} menit | ${detik} detik`;

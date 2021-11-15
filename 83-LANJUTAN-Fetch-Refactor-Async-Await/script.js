@@ -1,18 +1,15 @@
-
 // Dengan menggunakan Fetch
 
-// memanggil class button search
 /* const serachButton = document.querySelector('.search-button');
 
-// membuat event click
 serachButton.addEventListener('click', function () {
-    // mengambil class input keyword
+    // ? mengambil class input keyword
     const inputKeyword = document.querySelector('.input-keyword');
 
     fetch('http://www.omdbapi.com/?apikey=862c6674&&s=' + inputKeyword.value)
-        // membuat ketika callback nya terpenuhi (ini akan menghasilkan promise)
+        // ? membuat ketika callback nya terpenuhi (ini akan menghasilkan promise)
         .then(response => response.json())
-        // maka kita harus buat then lagi agar menjadi bentuk array
+        // ? maka kita harus buat then lagi agar menjadi bentuk array
         .then(response => {
             const movies = response.Search;
             let cards = '';
@@ -20,11 +17,11 @@ serachButton.addEventListener('click', function () {
             movies.forEach((m) => {
                 cards += showCards(m);
             });
-            // memanggil class movie container
+            // ? memanggil class movie container
             const movieContainer = document.querySelector('.movies-container');
             movieContainer.innerHTML = cards;
 
-            // membuat ketika tombol details di klik
+            // ? membuat ketika tombol details di klik
             const detailsButton = document.querySelectorAll('.modal-detail-button');
             detailsButton.forEach((btnModal) => {
                 btnModal.addEventListener('click', function () {
@@ -41,64 +38,57 @@ serachButton.addEventListener('click', function () {
         });
 }); */
 
+// ? fetch refactor async await
 
+const searchBtn = document.querySelector('.search-button');
+searchBtn.addEventListener('click', async function () {
+    let input = document.querySelector('.input-keyword');
+    const movies = await getMovies(input.value);
+    updateUi(movies);
+})
 
-// Dengan menggunakan Fetch versi 2
+function getMovies(value) {
+    let movies;
+    fetch('http://www.omdbapi.com/?apikey=862c6674&&s=' + value)
+        .then(response => response.json())
+        .then(response => {
+            movies = response.Search;
+        });
+    return movies;
+}
 
-// memanggil class button search
-const searchButton = document.querySelector('.search-button');
+function updateUi(movies) {
+    let cardMovie = '';
+    const moviesContainer = document.querySelector('.movies-container');
 
-// membuat event tombol searchButton
-searchButton.addEventListener('click', async function () { // async yaitu memberitahu bahwa ada function yang asynchronous
-    // memanggil class input keyword
-    const inputKeyword = document.querySelector('.input-keyword');
-    // membuat variabel movies untuk menampung function getMovies yang parameter nya masuk ke input-keyword
-    const movies = await getMovies(inputKeyword.value); // function getMovies merupakan asynchronous jadi kita tandai dengan await 
-    // jadi dengan await kita kerjakan dulu function getMovies sampai selesai baru kita masukan ke variabel movies
-    updateUI(movies);
+    movies.forEach(function (movie) {
+        cardMovie += showCards(movie);
+    });
+    moviesContainer.innerHTML = cardMovie;
+}
 
+document.addEventListener('click', async function (event) {
+    if (event.target.classList.contains('modal-detail-button')) {
+        let imdbid = event.target.dataset.imdbid;
+        let movieDetail = await getMovieDetail(imdbid);
+        updateUiDetail(movieDetail);
+    };
 });
 
-// membuat event tombol show details
-document.addEventListener('click', async function (e) {
-    // jika e target nya yang mempunyai class yang ada namanya modal-detail-button
-    if (e.target.classList.contains('modal-detail-button')) {
-        // membuat variabel imdbid untuk menangkap data imdbid
-        const imdbid = e.target.dataset.imdbid;
-        // membuat variabel movieDetails untuk menampung function getMoviesDetail yang menerima parameter data imdbid
-        const movieDetails = await getMoviesDetail(imdbid);
-        updateUiDetail(movieDetails);
-    }
-});
-
-// function untuk tombol show details
-function getMoviesDetail(imdbid) {
+function getMovieDetail(imdbid) {
     return fetch('http://www.omdbapi.com/?apikey=862c6674&&i=' + imdbid)
-        .then(Response => Response.json())
-        .then(Response => Response);
+        .then(response => response.json())
+        .then(response => response);
 }
 
-// function untuk tombol show details
-function updateUiDetail(m) {
-    const movieDetails = showMovieDetails(m);
+
+function updateUiDetail(response) {
+    const movieDetail = showMovieDetails(response);
     const modalBody = document.querySelector('.modal-body');
-    modalBody.innerHTML = movieDetails;
+    modalBody.innerHTML = movieDetail;
 }
 
-// function untuk input keyword
-function getMovies(keyword) {
-    return fetch('http://www.omdbapi.com/?apikey=862c6674&&s=' + keyword)
-        .then(Response => Response.json())
-        .then(Response => Response.Search);
-}
 
-// function untuk input menampilkan cards
-function updateUI(movies) {
-    let cards = '';
-    movies.forEach((m) => cards += showCards(m));
-    const movieContainer = document.querySelector('.movies-container');
-    movieContainer.innerHTML = cards;
-}
 
 
 // function showCards

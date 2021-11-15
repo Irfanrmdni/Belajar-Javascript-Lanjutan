@@ -57,8 +57,9 @@ searchButton.addEventListener('click', async function () { // async yaitu member
         const movies = await getMovies(inputKeyword.value); // function getMovies merupakan asynchronous jadi kita tandai dengan await 
         // jadi dengan await kita kerjakan dulu function getMovies sampai selesai baru kita masukan ke variabel movies
         updateUI(movies);
-    } catch (err) {
-        alert(err);
+    } catch (error) {
+        // console.log(error)
+        alert(error);
     }
 });
 
@@ -104,8 +105,19 @@ document.addEventListener('click', async function (e) {
 // function untuk tombol show details
 function getMoviesDetail(imdbid) {
     return fetch('http://www.omdbapi.com/?apikey=862c6674&&i=' + imdbid)
-        .then(Response => Response.json())
-        .then(Response => Response);
+        .then(Response => {
+            if (!Response.ok) {
+                throw new Error(Response.statusText);
+            }
+            return Response.json();
+        })
+        .then(Response => {
+            if (Response.Response === 'false') {
+                throw new Error(Response.Error);
+            }
+
+            return Response;
+        });
 }
 
 // function untuk tombol show details

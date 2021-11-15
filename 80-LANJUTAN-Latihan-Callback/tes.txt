@@ -1,0 +1,78 @@
+// menjalankan search
+$('.search-button').on('click', function () {
+    // AJAX
+    $.ajax({
+        // URL
+        url: 'http://www.omdbapi.com/?apikey=862c6674&&s=' + $('.input-keyword').val(),
+
+        // SUCCESS
+        success: function (results) {
+            const movie = results.Search;
+            let cards = '';
+
+            movie.forEach((mov) => {
+                cards += showCards(mov);
+            });
+
+            $('.movies-container').html(cards);
+
+            // 
+            $('.modal-detail-button').on('click', function () {
+                $.ajax({
+                    url: 'http://www.omdbapi.com/?apikey=862c6674&&i=' + $(this).data('imdbid'),
+
+                    success: function (m) {
+                        const movieDetail = showMovieDetails(m);
+                        $('.modal-body').html(movieDetail);
+                    },
+
+                    error: function (e) {
+                        console.log(e.responseText);
+                    }
+                });
+            });
+        }
+    });
+});
+
+function showCards(show) {
+    return `<div class="col-md-4 my-3">
+            <div class="card">
+            <img src="${show.Poster}" class="card-img-top img-fluid">
+            <div class="card-body">
+                <h5 class="card-title">${show.Title}</h5>
+                <h5 class="card-title">${show.Type}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${show.Year}</h6>
+                <a href="#" class="btn btn-primary modal-detail-button" data-imdbid="${show.imdbID}" data-toggle="modal" data-target="#moviesDataModal">Show Details</a>
+                </div>
+            </div>
+        </div>`;
+}
+
+function showMovieDetails(showDetail) {
+    return `<div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="${showDetail.Poster}" class="img-fluid">
+                        </div>
+                        
+                        <div class="col-md">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h3>Toy Story</h3>
+                                </li>
+                                <li class="list-group-item"><strong>Released : </strong> ${showDetail.Released}</li>
+                                <li class="list-group-item"><strong>Runtime : </strong> ${showDetail.Runtime}</li>
+                                <li class="list-group-item"><strong>Genre : </strong> ${showDetail.Genre}</li>
+                                <li class="list-group-item"><strong>Director : </strong> ${showDetail.Director}</li>
+                                <li class="list-group-item"><strong>Actors : </strong> ${showDetail.Actors}</li>
+                                <li class="list-group-item"><strong>Language : </strong> ${showDetail.Language}</li>
+                                <li class="list-group-item"><strong>Country : </strong> ${showDetail.Country}</li>
+                                <li class="list-group-item"><strong>Plot : </strong> <br> ${showDetail.Plot}</li>
+                            </ul>
+                        </div>                                                   
+                    </div>                                              
+                </div>                                          
+            </div>`;
+}

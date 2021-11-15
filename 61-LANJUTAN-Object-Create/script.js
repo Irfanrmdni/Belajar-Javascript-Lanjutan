@@ -23,78 +23,74 @@
 // };
 
 
-
-
-
-
 //         2. Function Declaration
 
 // cara untuk mengatasi nya dengan membuat objek terpisah
 // yang method di mahasiswa pindahin ke objek methodMahasiswa (ini akan dibuat 1x jadi tidak berulang)
-const methodMahasiswa = {
-    makan: function (porsi) {
-        this.energi += porsi;
-        console.log(`halo ${this.nama} Selamat makan`);
-    },
+// const methodMahasiswa = {
+//     makan: function (porsi) {
+//         this.energi += porsi;
+//         console.log(`halo ${this.nama} Selamat makan`);
+//     },
 
-    main: function (jam) {
-        this.energi -= jam;
-        console.log(`halo ${this.nama} Selamat bermain`);
-    }
-};
+//     main: function (jam) {
+//         this.energi -= jam;
+//         console.log(`halo ${this.nama} Selamat bermain`);
+//     },
+
+//     tidur: function (jam) {
+//         this.energi += jam;
+//         console.log(`halo ${this.nama} Selamat tidur`);
+//     }
+
+// };
 
 // function Mahasiswa(nama, energi) {
-//     let mahasiswa = {};
-//     mahasiswa.nama = nama;
-//     mahasiswa.energi = energi;
-//     // cara menghubungkan dengan object methodMahasiswa
-//     mahasiswa.makan = methodMahasiswa.makan;
-//     mahasiswa.main = methodMahasiswa.main;
-
-//     // mahasiswa.makan = function (porsi) {
-//     //     this.energi += porsi;
-//     //     console.log(`halo ${nama} Selamat makan`);
-//     // }
-
-//     // mahasiswa.main = function (jam) {
-//     //     this.energi -= jam;
-//     //     console.log(`halo ${nama} Selamat bermain`);
-//     // }
+//     let mahasiswa = {
+//         nama: nama,
+//         energi: energi,
+//         // cara menghubungkan dengan object methodMahasiswa
+//         makan: methodMahasiswa.makan,
+//         main: methodMahasiswa.main,
+//         tidur: methodMahasiswa.tidur,
+//     };
 
 //     return mahasiswa;
 // }
 
-
+// let Mhs1 = Mahasiswa('irfan', 10);
 
 // ini masih terdapat problem ketika kita membuat method baru di methodMahasiswa lagi maka kita harus menambahkan method
 // ke fungsi mahasiswa jadi kita mengelola 2 objek
 // nah kita bisa gunakan object.create dimana object ini dapat menyimpan/membawa di dalam fungsi
 
 //         4. Object.create()
+// const methodMahasiswa = {
+//     makan: function (porsi) {
+//         this.energi += porsi;
+//         console.log(`halo ${this.nama} Selamat makan`);
+//     },
 
-function Mahasiswa(nama, energi) {
-    // cara menggunakan obejct.create
-    let mahasiswa = Object.create(methodMahasiswa);
-    mahasiswa.nama = nama;
-    mahasiswa.energi = energi;
+//     main: function (jam) {
+//         this.energi -= jam;
+//         console.log(`halo ${this.nama} Selamat bermain`);
+//     },
 
-    // cara menghubungkan dengan object methodMahasiswa
-    // mahasiswa.makan = methodMahasiswa.makan;
-    // mahasiswa.main = methodMahasiswa.main;
+//     tidur: function (jam) {
+//         this.energi += jam;
+//         console.log(`halo ${this.nama} Selamat tidur`);
+//     }
+// };
 
-    // mahasiswa.makan = function (porsi) {
-    //     this.energi += porsi;
-    //     console.log(`halo ${nama} Selamat makan`);
-    // }
+// function Mahasiswa(nama, energi) {
+//     // cara menggunakan obejct.create
+//     let mahasiswa = Object.create(methodMahasiswa);
+//     mahasiswa.nama = nama;
+//     mahasiswa.energi = energi;
 
-    // mahasiswa.main = function (jam) {
-    //     this.energi -= jam;
-    //     console.log(`halo ${nama} Selamat bermain`);
-    // }
+//     return mahasiswa;
+// }
 
-    return mahasiswa;
-}
-
-let nama1 = Mahasiswa('irpan', 20);
-let nama2 = Mahasiswa('bagas', 10);
-let nama3 = Mahasiswa('jono', 30);
+// let nama1 = Mahasiswa('irpan', 20);
+// let nama2 = Mahasiswa('bagas', 10);
+// let nama3 = Mahasiswa('jono', 30);

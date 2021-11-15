@@ -4,21 +4,42 @@
         "nrp": "2113191069",
         "email": "irfanrmdni209@gmail.com",
         "jurusan": "teknik informatika",
-        "idDosenWali": 1
+        "idDosenWali": 7180
     },
     {
         "nama": "Dori harsa",
         "nrp": "2113191765",
         "email": "doriharsa@gmail.com",
-        "jurusan": "teknik informatika",
-        "idDosenWali": 2
+        "jurusan": "teknik Elektro",
+        "idDosenWali": 7181
     },
     {
         "nama": "Joni halis",
         "nrp": "2113191233",
         "email": "jonihalis@gmail.com",
-        "jurusan": "teknik informatika",
-        "idDosenWali": 3
+        "jurusan": "teknik Sipil",
+        "idDosenWali": 7182
+    },
+    {
+        "nama": "zihan indah",
+        "nrp": "2113151088",
+        "email": "zihan@gmail.com",
+        "jurusan": "teknik Kimia",
+        "idDosenWali": 7183
+    },
+    {
+        "nama": "Gunawan",
+        "nrp": "2113151761",
+        "email": "Gunawan@gmail.com",
+        "jurusan": "teknik Industri",
+        "idDosenWali": 7184
+    },
+    {
+        "nama": "Fitri Nurhisyam",
+        "nrp": "2113191233",
+        "email": "FitriNur@gmail.com",
+        "jurusan": "teknik mesin",
+        "idDosenWali": 7185
     }
 
 ]

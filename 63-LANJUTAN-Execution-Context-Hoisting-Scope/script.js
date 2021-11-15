@@ -1,4 +1,3 @@
-
 // 2 Fase pada Execution Context
 
 // contoh 1
@@ -10,6 +9,7 @@
 // var nama = 'irpan';
 // console.log(nama);
 
+// creation phase pada global context
 // yang terjadi pada saat program dijalankan ada sesuatu yang disebut dengan (fase Creation) pembentukan
 // ini terjadi di context global karena buat nya langsung di file javascript nya tidak di dalam function
 // javascript akan mengecek terlebih dahulu apakah ada variabel nya / function nya
@@ -28,34 +28,34 @@
 // contoh 2
 // kalau console log nya di atas function maka tidak masalah
 
-// console.log(hello()); ini akan menghasilkan undefined
+// console.log(hello()); //ini akan menghasilkan undefined
 
 // var nama = 'irpan';
 // var umur = 20;
 
 // console.log(hello()); // ini akan dieksekusi / berjalan
 
-// function hello() {
-//     // karena tidak ada return maka akan menghasilkan undefined
-//     // console.log(`nama saya ${nama} umur saya ${umur}`);
+function hello() {
+    // karena tidak ada return maka akan menghasilkan undefined
+    // console.log(`nama saya ${nama} umur saya ${umur}`);
 
-//     // kita gunakan return untuk menghilangkan undefined
-//     return `nama saya ${nama} umur saya ${umur}`;
-// }
+    // kita gunakan return untuk menghilangkan undefined
+    // return `nama saya ${nama} umur saya ${umur}`;
+}
 
 // function membuat local Execution context yang didalamnya terdapat juga creation dan execution
 // selain window , ada arguments dan hoisting
 
 // contoh 3
 // var nama = 'irfanrmdni';
-// var instagram = '@irfanrmdni_';
+// var username = 'irfanrmdnii';
 
-// function cetak(username) {
+// function cetakURL() {
 //     var url = 'https://instargam.com/';
 //     return url + username;
 // }
 
-// console.log(cetak(instagram));
+// console.log(cetakURL('erikgunawan'));
 
 // pertama : var nama dan instagram akan undefined dan cetak akan menghasilkan isi fungsi nya
 // kedua : var nama di isi 'irfanrmdni' dan instagram di isi '@irfanrmdni_' yang fungsi cetak di skip
@@ -67,38 +67,57 @@
 // kedelapan : lalu akan ditampilkan 
 
 // contoh 4
+
 // function a() {
 //     console.log('ini a');
 
 //     function b() {
 //         console.log('ini b');
+
+//         function c() {
+//             console.log('ini c');
+//         }
+//         c();
 //     }
 //     b();
-
-//     function c() {
-//         console.log('ini c');
-//     }
-//     c();
 // }
-
 // a(); // akan menghasilkan abc
 
 // contoh 5
-var nama = 'irfanrmdni';
-var instagram = '@irfanrmdni_';
+// var nama = 'irfanrmdni';
+// var instagram = '@irfanrmdni_';
 
-// function cetak(username) {
+// function cetak(instagram) {
 //     var url = 'https://instargam.com/';
 //     return url + instagram;
 // }
 
-// console.log(cetak('@nabilaputri')); // ini akan mengambil @nabilaputri dan akan mengabaikan var instagram = '@irfanrmdni_'
+// ini akan mengambil @nabilaputri dan akan mengabaikan var instagram = '@irfanrmdni_'
+// console.log(cetak('@nabilaputri'));
 
-function cetak() {
-    // yang @nabilaputri akan masuk ke object yang namanya arguments
-    console.log(arguments);
-    var url = 'https://instargam.com/';
-    return url + instagram;
-}
+// function cetak() {
+//     // yang @nabilaputri akan masuk ke object yang namanya arguments
+//     console.log(arguments);
+//     var url = 'https://instargam.com/';
+//     return url + instagram;
+// }
 
-console.log(cetak('@nabilaputri')); // ini akan mengambil var instagram = '@irfanrmdni_'; dan akan mengabaikan @nabilaputri
+// ini akan mengambil var instagram = '@irfanrmdni_'; dan akan mengabaikan @nabilaputri
+// console.log(cetak('@nabilaputri'));
+
+// function satu() {
+//     var nama = 'irfan';
+//     console.log(nama); // irfan
+// }
+
+// function dua() {
+//     console.log(arguments);
+//     console.log(nama); // erik
+// }
+
+// console.log(nama); // undefined
+// var nama = 'erik';
+// satu(); // irfan
+// dua('irfan'); // erik. dan dody ke argument
+// console.log(nama); // erik
+

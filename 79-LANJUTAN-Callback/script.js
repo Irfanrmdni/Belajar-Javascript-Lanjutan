@@ -13,8 +13,6 @@
 
 // tampilPesan(halo);
 
-
-
 // 02   -   cara Synchronous membuat progarm eksekusi nya lama 
 
 // const mhs = [
@@ -110,7 +108,6 @@ function error(e) {
 
 getDataMahasiswa('data/mahasiswa.json', success, error); */
 
-
 // ========================================================================================================================================
 
 // 04   -   Perbedaan cara antara Asynchronous dan Synchronous
@@ -144,16 +141,153 @@ getDataMahasiswa('data/mahasiswa.json', success, error); */
 // ========================================================================================================================================
 
 // 05   -   cara dengan menggunakan JQuery  (tidak perlu ubah ke JSON object)
-console.log('mulai');
+// console.log('mulai');
 
-$.ajax({
-    url: 'data/mahasiswa.json',
-    success: function (mhs) {
-        mhs.forEach((m) => console.log(m.nama));
+// $.ajax({
+//     url: 'data/mahasiswa.json',
+//     success: function (mhs) {
+//         mhs.forEach((m) => console.log(m.nama));
+//     },
+//     error: function (e) {
+//         console.log(e.responseText);
+//     }
+// });
+
+// console.log('selesai'); 
+
+
+// =====================================================================================================================================================================
+
+// ? Callback
+
+// * Synchronous Callback 01
+// function halo(nama) {
+//     alert(`halo.. ${nama}`);
+// }
+
+// function printHalo(callback) {
+//     const nama = prompt('masukan nama anda: ');
+//     callback(nama);
+// }
+
+// printHalo(halo);
+
+
+// * Synchronous Callback 02
+// function printHalo(callback) {
+//     const nama = prompt('masukan nama anda: ');
+//     callback(nama);
+// }
+
+// printHalo(function (nama) {
+//     alert(`halo.. ${nama}`);
+// });
+
+
+// ? synchronous Callback
+const mahasiswa = [
+    {
+        "nama": "Agung jumiati",
+        "nrp": "2113191777",
+        "email": "Agung@gmail.com",
+        "jurusan": "Teknik informatika",
+        "idDosenWali": 7180
     },
-    error: function (e) {
-        console.log(e.responseText);
+    {
+        "nama": "Deni heriwan",
+        "nrp": "2113191779",
+        "email": "Deni@gmail.com",
+        "jurusan": "Teknik Elektro",
+        "idDosenWali": 7181
+    },
+    {
+        "nama": "Gagan garsa",
+        "nrp": "2113191787",
+        "email": "Gagan@gmail.com",
+        "jurusan": "Teknik Sipil",
+        "idDosenWali": 7182
     }
-});
+];
 
-console.log('selesai'); 
+
+
+
+
+// ? cara mengambil data dengan map
+// mahasiswa.map(mhs => console.log(mhs.nama));
+
+// ? cara mengambil data dengan for loop
+// for (let i = 0; i < mahasiswa.length; i++) {
+//     console.log(mahasiswa[i].nama);
+// }
+
+// ? cara mengambil data dengan forEach
+
+// * ini akan berjalan normal (blocking)
+// console.log('mulai');
+// mahasiswa.forEach(mhs => console.log(mhs.nama));
+// console.log('selesai');
+
+// * kita akan simulasikan agar data mhs nya berjalan lama
+// console.log('mulai'); // * 1. jalankan console.log('mulai')
+// mahasiswa.forEach(mhs => {
+//     for (let i = 0; i < 10000000; i++) {
+//         let date = new Date();
+//     }
+//     console.log(mhs.nama); // * 2. menunggu proses beberapa waktu untuk berjalan
+// });
+// console.log('selesai'); // * 3. setelah data mhs dijalankan maka jalankan console.log('selesai')
+
+
+// ? Asynchronous Callback
+
+// * parameter url = untuk menangkap link data json
+// * parameter success = callback function 
+// * parameter error = callback function 
+// ? ini disebut ajax menggunakan vanilla javascript
+// function getMahasiswa(url, success, error) {
+//     let xhr = new XMLHttpRequest();
+
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState === 4) {
+//             if (xhr.status === 200) {
+//                 success(xhr.response)
+//             } else if (xhr.status === 404) {
+//                 error();
+//             }
+//         }
+//     }
+
+//     xhr.open('get', url);
+//     xhr.send();
+// }
+
+// function success(result) {
+//     const mahasiswa = JSON.parse(result);
+//     mahasiswa.map(function (mhs) {
+//         console.log(mhs.nama);
+//     })
+// }
+// function error() { }
+
+// console.log('mulai');
+// getMahasiswa('data/mahasiswa.json', success, error);
+// console.log('selesai');
+
+
+// ? contoh dengan menggunakan jQuery
+// console.log('mulai');
+// $.ajax({
+//     url: "data/mahasiswa.json",
+//     success: function (mhs) {
+//         mhs.map(function (m) {
+//             console.log(m.nama);
+//         })
+//     },
+//     error: function (e) {
+//         console.log(e.responseText);
+//     }
+// });
+// console.log('selesai');
+
+

@@ -5,6 +5,10 @@
 }
 
 .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
     border: solid 1px black;
@@ -13,6 +17,11 @@
         .3s height .3s,
         .3s margin-top .3s,
         1s background-color;
+    cursor: pointer;
+}
+
+.box:hover {
+    border: solid 2px rebeccapurple;
 }
 
 .size {
@@ -22,5 +31,5 @@
 }
 
 .caption {
-    background-color: black;
+    background-color: rebeccapurple;
 }
